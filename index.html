@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Frontend Login</title>
+	<title>fakebook</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="css/font-awesome.min.css">	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 
 	<div class="row" id="fb-header">
 		<div class="col-md-6 " id="fb-title">
-			<i class="fa fa-facebook" aria-hidden="true"></i><span>ackebook</span>
+			<i class="fa fa-facebook" aria-hidden="true"></i><span>akebook</span>
 		</div>
 
 		<div class="col-md-6" id="fb-signin">
@@ -25,7 +25,7 @@
 				<div class="col-md-4">
 					<label>contraseña</label>
 					<input type="password" >
-					<button>entrar</button>
+					<button>Entrar</button>
 				</div>
 
 			</div>
@@ -41,7 +41,7 @@
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-9 col-centered" id="fb-strong">
-					<strong>Facebook te ayuda a comunicarte y compartir con las personas que forman parte de tu vida.</strong>
+					<strong>Fakebook te ayuda a comunicarte y compartir con las personas que forman parte de tu vida.</strong>
 				</div>
 
 				<div class="col-md-8 col-centered">
@@ -65,19 +65,19 @@
 
 			<!-- form -->
 
-			<form action="#">
+			<form  id="signinForm" action="#" validate>
 				<div class="row">
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="nombre">
+							<input type="text" name="name" class="form-control" placeholder="nombre" title="Solo letras y espacios" pattern="[a-zA-Z\s]{2,}" required>
 							
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<input type="text"  class="form-control" placeholder="apellidos">
+							<input type="text" name="lastName" class="form-control" placeholder="apellidos" title="solo letras y espacios" pattern="[a-zA-Z\s]{2,}" required>
 							
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="numero movil o correo electronico">
+							<input type="text" name="username" class="form-control" placeholder="numero movil o correo electronico" required>
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="contraseña">
+							<input type="password" name="password" class="form-control" placeholder="contraseña" title="la contraseña debe tener almenos 8 carácteres" pattern=".{8,}" required>
 						</div>
 					</div>
 				</div>
@@ -108,39 +108,89 @@
 
 					<div class="col-md-2">
 						<div class="form-group">
-							<select name="" id="" class="form-control">
-								<option value="">1</option>
-								<option value="">2</option>
-								<option value="">3</option>
+							<select name="bDay" id="" class="form-control" required>
+								<option value="" selected>Dia</option>
+								<option value="1">01</option>
+								<option value="2">02</option>
+								<option value="3">03</option>
+								<option value="4">04</option>
+								<option value="5">05</option>
+								<option value="6">06</option>
+								<option value="7">07</option>
+								<option value="8">08</option>
+								<option value="9">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+								<option value="31">31</option>
 							</select>
 						</div>
 					</div>
 
 					<div class="col-md-2">
 						<div class="form-group">
-							<select name="" id="" class="form-control">
-								<option value="">Ene</option>
-								<option value="">Feb</option>
-								<option value="">Mar</option>
-								<option value="">Abr</option>
-								<option value="">May</option>
-								<option value="">Jun</option>
-								<option value="">Jul</option>
-								<option value="">Ago</option>
-								<option value="">Sep</option>
-								<option value="">Oct</option>
-								<option value="">Nov</option>
-								<option value="">Dic</option>																								
+							<select name="bMonth" id="" class="form-control" required>
+								<option value="" selected>Mes</option>
+								<option value="01">Ene</option>
+								<option value="02">Feb</option>
+								<option value="03">Mar</option>
+								<option value="04">Abr</option>
+								<option value="05">May</option>
+								<option value="06">Jun</option>
+								<option value="07">Jul</option>
+								<option value="08">Ago</option>
+								<option value="09">Sep</option>
+								<option value="10">Oct</option>
+								<option value="11">Nov</option>
+								<option value="12">Dic</option>
+
 							</select>
 						</div>
 					</div>
 
 					<div class="col-md-2">
 						<div class="form-group">
-							<select name="" id="" class="form-control">
-								<option value="">1990</option>
-								<option value="">1991</option>
-								<option value="">1992</option>
+							<select name="bYear" id="" class="form-control" required>
+								<option value="" selected>Año</option>
+								<option value="1990">1990</option>
+								<option value="1991">1991</option>
+								<option value="1992">1992</option>
+								<option value="1993">1993</option>
+								<option value="1994">1994</option>
+								<option value="1995">1995</option>
+								<option value="1996">1996</option>
+								<option value="1997">1997</option>
+								<option value="1998">1998</option>
+								<option value="1999">1999</option>
+								<option value="2000">2000</option>
+								<option value="2001">2001</option>
+								<option value="2002">2002</option>
+								<option value="2003">2003</option>
+								<option value="2004">2004</option>
+								<option value="2005">2005</option>
+								<option value="2006">2006</option>
+								<option value="2007">2007</option>
+								<option value="2008">2008</option>
+								<option value="2009">2009</option>
+								<option value="2010">2010</option>																																																
 							</select>
 						</div>
 					</div>								
@@ -151,10 +201,9 @@
 					<div class="col-md-12">
 						<input type="radio" value="male" name="gender"> Hombre
 						<input type="radio" value="female" name="gender"> Mujer
-						
 					</div>
 				</div>
-
+				<br>
 				<div class="row">
 					<div class="col-md-10">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat expedita, ipsum, ab id, aut corrupti error saepe excepturi assumenda tempore facere odit esse eius dignissimos quasi ex dolorum deserunt itaque!</p>
@@ -164,7 +213,7 @@
 
 				<div class="row">
 					<div class="col-md-6">
-						<button type="button" class="btn btn-success" id="fb-end">
+						<button type="submit" class="btn btn-success" id="fb-end">
 							Terminar
 						</button>
 					</div>
@@ -174,7 +223,7 @@
 
 		</div>
 	</div>
-			
+
 		</div>
 	</div>
 

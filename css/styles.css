@@ -56,7 +56,13 @@ body {
 	background-color: #4267b2;
 	outline: none;
 	border: 1px solid #29487d ;
+	transition: background 2s;
 
+}
+
+#signin-form button:hover {
+	border:1px solid #4267b2;
+	background-color:#29487d ;
 }
 
 
