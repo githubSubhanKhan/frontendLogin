@@ -1,0 +1,62 @@
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+.form-control input {
+	background-color: #fff;
+}
+
+#fb-header{
+	height: 60px;
+	background-color: #425f9c;
+	color:#fff;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	margin-bottom: 10px;
+}
+
+#fb-title {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+#fb-title i {
+	margin-left: 15px;
+}
+
+#fb-title span {
+	font-weight: bold;
+}
+
+
+#fb-signin input{
+	color:#424242;
+	text-indent: 5px;
+}
+
+#fb-strong {
+	margin-top: 14px;
+	color: #0e385f;
+	font-size: 18px;
+}
+
+
+
+#signin-form label {
+	display: block;
+	font-weight: 400;
+}
+
+#signin-form button {
+	background-color: #4267b2;
+	outline: none;
+	border: 1px solid #29487d ;
+
+}
+
+
+button#fb-end {
+	width: 60%;
+	font-weight: bold;
+}

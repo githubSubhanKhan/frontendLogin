@@ -1,0 +1,81 @@
+* {
+	margin:0;
+	padding: 0;
+	font-family: font-family: 'Roboto', sans-serif;
+
+}
+
+body {
+	background-color: #e2e6f0;
+}
+
+.container {
+	display: flex;
+	flex-flow: row wrap;
+  	align-content: center;
+  	justify-content: space-between;
+  	
+}
+
+.container > * {
+	padding: 10px;
+}
+
+.strech {
+	-webkit-align-content: stretch;
+	align-content: stretch;
+    width: 100%;
+
+
+}
+
+.center {
+	-webkit-align-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+.start {
+	-webkit-align-content: flex-start;
+    align-content: flex-start;
+    width: 100%;
+
+}
+
+.f-item {
+	-webkit-flex:1;
+	flex: 1;
+	display: flex;
+}
+
+
+.signin-bar{
+	background-color: #3b5998;
+	color#FFF;
+	height: 55px;
+}
+
+.brand-logo {
+    color: #fff;
+    width: 150px;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+
+.info-landing strong {
+	color:#0e385f;
+	display: flex;
+	width: 100%;
+	order: 1;
+	font-size: 17px;
+	flex: 1 100%;
+}
+
+.info-landing img{
+	order: 2;
+}
+
+.signup-texts h3,.signup-texts h5 {
+	flex:1 100%;
+}
