@@ -12,53 +12,65 @@
 	}
 
 
-	window.serializeForm = (f) => {
-		let tmp = {};
-		for (let [key, value] of f.entries()) { 
-		  tmp[key] = value;
-		}
-		return tmp;		
-	};
+	const Mixins = ()=>{
 
-	window.saveLocalStorage = ()=> {
-		window.localStorage.setItem('db',JSON.stringify(window.USERSDB));
-	};
-
-	window.existUser = (obj)=> {
-		let exist = false;
-		for(let i of window.USERSDB){
-			console.log(i);
-
-			if(obj.username == i.username){
-				exist = true;
-				break;
-				
+		const serialize = (f)=> {
+			let tmp = {};
+			for (let [k,v] of f.entries()) { 
+			  tmp[k] = v;
 			}
-		}
+			return tmp;				
+		};
 
-		return exist;
+		const queryUser = (obj)=> {
+			let exist = false;
+			for(let i of window.USERSDB){
+				console.log(i);
+
+				if(i.username == obj.username){
+					exist = true;
+					break;
+					
+				}
+			}
+
+			return exist;
+		};
+
+		const saveLocalStorage = ()=> {
+			window.localStorage.setItem('db',JSON.stringify(window.USERSDB));
+
+		};
+
+		return {serialize,queryUser,saveLocalStorage};
+
 	};
 
-	class Mixins {
 
-		//nothing yet
 
-	}
+	class Fakebook {
+		
+		constructor(){
+		    this.mixins = Mixins();
+		}
 
-	class Session {
+		test (){
+			console.log(this.foo);
+		}
 
 		signup (event) {
+			console.log(this.foo);
 			event.preventDefault();
 			let fData = new FormData(document.querySelector('form'));
 
-			let userObject = window.serializeForm(fData);
+			let userObject = this.mixins.serialize(fData);
 			
-			let exist = window.existUser(userObject);
+			let exist = this.mixins.queryUser(userObject);
 			console.log('user exist ??',exist);
 
 			if(!exist){
 				window.USERSDB.push(userObject);
-				window.saveLocalStorage();
+				this.mixins.saveLocalStorage();
 				console.log('Saved ...');
 				return true;
 			} else {
@@ -73,9 +85,10 @@
 		}
 	}
 
-	const init = new Session();
-
+	const fakebook = new Fakebook();
 	const signinForm = document.getElementById('signinForm');
 
-	signinForm.addEventListener('submit',init.signup);
+	signinForm.addEventListener('submit',(event)=>{
+		fakebook.signup(event);
+	});
 })();
