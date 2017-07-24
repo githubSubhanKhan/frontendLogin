@@ -1,3 +1,7 @@
+body {
+	overflow-x: hidden;
+}
+
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -9,7 +13,7 @@
 }
 
 #fb-header{
-	height: 60px;
+	height: 65px;
 	background-color: #425f9c;
 	color:#fff;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -17,12 +21,12 @@
 }
 
 #fb-title {
-	font-size: 20px;
+	font-size: 30px;
 	margin-top: 10px;
 }
 
 #fb-title i {
-	margin-left: 15px;
+	margin-left: 30%;
 }
 
 #fb-title span {
