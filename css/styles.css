@@ -70,3 +70,27 @@ button#fb-end {
 	width: 60%;
 	font-weight: bold;
 }
+
+
+.hidden{
+	display: none;
+}
+
+.warning {
+	font-weight: bold;
+	color:#f44336;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.success {
+	font-weight: bold;
+	color:#26A69A;
+	margin-bottom: 15px;
+	display: block;	
+}
+
+h2.loggedText {
+	text-align: center;
+	color:#26A69A;
+}

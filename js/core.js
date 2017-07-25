@@ -42,7 +42,38 @@
 
 		};
 
-		return {serialize,queryUser,saveLocalStorage};
+		const auth = (obj)=>{
+
+			let index = undefined;
+
+			for(let i in window.USERSDB){
+				let item = window.USERSDB[i];
+
+				if(item.username == obj.username){
+					index = i;
+					break;
+				}
+			}
+
+			if(index == undefined){
+				return {logged:false,error:"No existe el usuario"};
+			}
+
+			let foundObj = window.USERSDB[index];
+			let match = foundObj.password === obj.password;
+
+			if(match){
+				return {logged:match}
+
+			}else {
+				return {logged:match,error:'La contraseña es invalida'}
+			}
+
+		
+
+		};
+
+		return {serialize,queryUser,saveLocalStorage,auth};
 
 	};
 
@@ -54,14 +85,38 @@
 		    this.mixins = Mixins();
 		}
 
-		test (){
-			console.log(this.foo);
-		}
-
-		signup (event) {
-			console.log(this.foo);
+		//signin method
+		signin (event) {
 			event.preventDefault();
-			let fData = new FormData(document.querySelector('form'));
+			let form = document.querySelector('form#signinForm');
+			let signinForm = new FormData(form);
+			let toObj = this.mixins.serialize(signinForm);
+			console.log(toObj);
+
+			let auth = this.mixins.auth(toObj);
+
+			if(auth.logged){
+				form.reset();
+				let logSection = document.getElementById('loggedContainer');
+				let formSection = document.getElementById('registerContainer');
+				let signinForm = document.getElementById('fb-signin');
+				logSection.classList.remove('hidden');
+				formSection.classList.add('hidden');
+				signinForm.classList.add('hidden');
+			}else {
+				alert(auth.error);
+				form.reset();
+			}
+
+
+
+		}		
+
+		//signup method
+		signup (event) {
+			event.preventDefault();
+			let form = document.querySelector('form#signupForm');
+			let fData = new FormData(form);
 
 			let userObject = this.mixins.serialize(fData);
 			
@@ -71,24 +126,28 @@
 			if(!exist){
 				window.USERSDB.push(userObject);
 				this.mixins.saveLocalStorage();
-				console.log('Saved ...');
-				return true;
+				document.getElementsByClassName('success')[0].classList.remove('hidden');
+
 			} else {
-				console.log('already exists');
-				return false;
+				document.getElementsByClassName('warning')[0].classList.remove('hidden');
+
 			}
 
+			form.reset();
+
 		}
 
-		signin (username,password) {
-			// here goes signup;
-		}
+
 	}
 
 	const fakebook = new Fakebook();
-	const signinForm = document.getElementById('signinForm');
+	const signupForm = document.getElementById('signupForm');
+	const signinForm = document.getElementById('signinForm')
 
-	signinForm.addEventListener('submit',(event)=>{
+	signupForm.addEventListener('submit',(event)=>{
 		fakebook.signup(event);
 	});
+	signinForm.addEventListener('submit',(event)=>{
+		fakebook.signin(event);
+	});	
 })();
