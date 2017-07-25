@@ -1,3 +1,7 @@
+body {
+	overflow-x: hidden;
+}
+
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -9,7 +13,7 @@
 }
 
 #fb-header{
-	height: 60px;
+	height: 65px;
 	background-color: #425f9c;
 	color:#fff;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -17,12 +21,12 @@
 }
 
 #fb-title {
-	font-size: 20px;
+	font-size: 30px;
 	margin-top: 10px;
 }
 
 #fb-title i {
-	margin-left: 15px;
+	margin-left: 30%;
 }
 
 #fb-title span {
@@ -52,11 +56,41 @@
 	background-color: #4267b2;
 	outline: none;
 	border: 1px solid #29487d ;
+	transition: background 2s;
 
+}
+
+#signin-form button:hover {
+	border:1px solid #4267b2;
+	background-color:#29487d ;
 }
 
 
 button#fb-end {
 	width: 60%;
 	font-weight: bold;
+}
+
+
+.hidden{
+	display: none;
+}
+
+.warning {
+	font-weight: bold;
+	color:#f44336;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.success {
+	font-weight: bold;
+	color:#26A69A;
+	margin-bottom: 15px;
+	display: block;	
+}
+
+h2.loggedText {
+	text-align: center;
+	color:#26A69A;
 }
