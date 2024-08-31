@@ -1,4 +1,4 @@
-# Facebook Login - (frontend without any api)
+# Facebook Login - (frontend and backend without any api)
 
-Single html that simulates a signin/signup with facebook appearance
-used localstorage to simulate db 
+Single html that simulates a loginin/signup with facebook appearance
+used myPHPadmin to simulate db 
