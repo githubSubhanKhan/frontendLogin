@@ -1,3 +1,8 @@
+<?php
+include("database.php");
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +24,7 @@
 		<div class="col-md-6" id="fb-signin">
 			<div class="row" id="signin-form">
 
-				<form action="#" method="POST" id="signinForm" validate>
+				<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="signinForm" validate>
 				<div class="col-md-4">
 				<label>usuario</label>
 				<input name="username" type="text" required>
@@ -31,7 +36,7 @@
 				</div>
 
 				<div class="col-md-2" style="margin-top: 30px;padding: 0;">
-					<button type="submit">Entrar</button>
+					<button type="submit" name="login">Entrar</button>
 				</div>
 
 				</form>
@@ -89,7 +94,7 @@
 
 					<!-- form -->
 
-					<form  id="signupForm" action="#" validate>
+					<form id="signupForm" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
 						<div class="row">
 
 							<div class="col-md-6">
@@ -237,7 +242,7 @@
 
 						<div class="row">
 							<div class="col-md-6">
-								<button type="submit" class="btn btn-success" id="fb-end">
+								<button type="submit" name="signup" class="btn btn-success" id="fb-end">
 									Terminar
 								</button>
 							</div>
@@ -256,6 +261,54 @@
 
 
 
-	<script src="./js/core.js"></script>
+	<!-- <script src="./js/core.js"></script> -->
 </body>
 </html>
+
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+	if(isset($_POST['signup'])) {
+		$name=filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+		$lastname=filter_input(INPUT_POST, "lastName", FILTER_SANITIZE_SPECIAL_CHARS);
+		$username=filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+		$password=filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+		$hash=password_hash($password, PASSWORD_BCRYPT);
+		$gender=$_POST["gender"];
+
+		$insertsql="INSERT INTO fakebook (name, lastname, username, password, gender) VALUES ('$name', '$lastname', '$username', '$hash', '$gender')";
+
+		try {
+			$insertresult=mysqli_query($conn, $insertsql);
+			echo "<script>
+				alert('Signup successful! You can now log in with your credentials.');
+        	</script>";
+		}
+		catch(mysqli_sql_exception) {
+			echo"<script>('We're experiencing technical difficulties. Please try again later.')</script>";
+		}
+	}
+	if(isset($_POST['login'])) {
+		$username=filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+		$password=filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+
+		$searchsql="SELECT * FROM fakebook WHERE username='$username'";
+		$searchresult=mysqli_query($conn, $searchsql);
+
+		if(mysqli_num_rows($searchresult) > 0) {
+			$row=mysqli_fetch_assoc($searchresult);
+
+			if(password_verify($password, $row['password'])) {
+				$loginusername=$row['username'];
+				$_SESSION['username']=$loginusername;
+				// header("Location: welcome.php");
+				echo"<script>window.location.href = 'welcome.php';</script>";
+			} else {
+				echo"<script>alert('No matching records found. Please check your input and try again.')</script>";
+			}
+		} else {
+			echo"<script>alert('No matching records found. Please check your input and try again.')</script>";
+		}
+	}
+}
+mysqli_close($conn);
+?>
